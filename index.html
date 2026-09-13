@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ZORA - Personal Finance</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+        <h1>ZORA</h1>
+        <p>Personal Finance</p>
+    </header>
+
+    <div class="logout-container">
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <main>
+
+        <section class="saldo">
+            <p>Total Saldo</p>
+            <h2 id="saldo">Rp 0</h2>
+        </section>
+
+        <section class="ringkasan">
+
+            <div class="card">
+                <p>Pemasukan</p>
+                <h3 id="pemasukan">Rp 0</h3>
+            </div>
+
+            <div class="card">
+                <p>Pengeluaran</p>
+                <h3 id="pengeluaran">Rp 0</h3>
+            </div>
+
+        </section>
+
+        <section class="form">
+
+            <h2>Tambah Transaksi</h2>
+
+            <div id="namaTransaksiContainer">
+
+                <input 
+                    type="text" 
+                    id="namaTransaksi" 
+                    placeholder="Nama transaksi"
+                >
+
+            </div>
+
+            <input
+                type="number"
+                id="jumlah"
+                placeholder="Jumlah uang"
+            >
+
+            <select id="jenis">
+                <option value="pemasukan">Pemasukan</option>
+                <option value="pengeluaran">Pengeluaran</option>
+            </select>
+
+            <select id="kategori" onchange="cekKategori()">
+
+                <option value="gaji">Gaji</option>
+                <option value="uang-saku">Uang Saku</option>
+                <option value="makanan">Makanan</option>
+                <option value="transportasi">Transportasi</option>
+                <option value="belanja">Belanja</option>
+                <option value="hiburan">Hiburan</option>
+                <option value="pendidikan">Pendidikan</option>
+                <option value="tabungan">Tabungan</option>
+                <option value="lainnya">Lainnya</option>
+            
+            </select>
+
+            <button onclick="tambahTransaksi()">
+                Tambahkan
+            </button>
+
+        </section>
+
+        <section class="riwayat">
+
+            <h2>Riwayat Transaksi</h2>
+
+            <div id="daftarTransaksi">
+                <p>Belum ada transaksi.</p>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+    
+</body>
+</html>
