@@ -12,6 +12,7 @@
 
 <body>
 
+    <!-- HEADER -->
     <header>
         <h1>ZORA</h1>
         <p>Personal Finance</p>
@@ -19,7 +20,9 @@
 
     <main>
 
-        <!-- BERANDA -->
+        <!-- =========================
+             BERANDA
+        ========================== -->
         <section id="menu-beranda" class="halaman aktif">
 
             <section class="saldo">
@@ -43,6 +46,7 @@
 
             <section class="grafik">
                 <h2>Grafik Keuangan</h2>
+
                 <div id="grafikKeuangan">
                     <p>Grafik akan ditampilkan di sini.</p>
                 </div>
@@ -50,15 +54,42 @@
 
         </section>
 
-        <!-- RIWAYAT -->
+
+        <!-- =========================
+             RIWAYAT TRANSAKSI
+        ========================== -->
         <section id="menu-riwayat" class="halaman">
 
             <div class="riwayat-header">
                 <h2>Riwayat Transaksi</h2>
 
-                <select id="filterBulan" onchange="filterTransaksi()">
-                    <option value="semua">Semua</option>
+                <select
+                    id="filterBulan"
+                    onchange="filterTransaksi()"
+                >
+                    <option value="semua">Semua Bulan</option>
                 </select>
+            </div>
+
+            <div class="filter-transaksi">
+
+                <input
+                    type="search"
+                    id="cariTransaksi"
+                    placeholder="Cari nama transaksi..."
+                    oninput="filterTransaksi()"
+                    autocomplete="off"
+                >
+
+                <select
+                    id="filterJenis"
+                    onchange="filterTransaksi()"
+                >
+                    <option value="semua">Semua Jenis</option>
+                    <option value="pemasukan">Pemasukan</option>
+                    <option value="pengeluaran">Pengeluaran</option>
+                </select>
+
             </div>
 
             <div id="daftarTransaksi">
@@ -67,14 +98,258 @@
 
         </section>
 
-        <!-- PEMASUKAN -->
+
+        <!-- =========================
+             STATISTIK KEUANGAN
+        ========================== -->
+        <section id="menu-statistik" class="halaman">
+
+            <h2>Statistik Keuangan</h2>
+
+            <div class="statistik-filter">
+
+                <label for="filterBulanStatistik">
+                    Periode Statistik
+                </label>
+
+                <select id="filterBulanStatistik">
+                    <option value="semua">Semua Periode</option>
+                </select>
+
+            </div>
+
+            <div class="statistik-grid">
+
+                <div class="statistik-card">
+                    <p>Total Transaksi</p>
+                    <h3 id="statTotalTransaksi">0</h3>
+                </div>
+
+                <div class="statistik-card">
+                    <p>Rata-rata Pengeluaran</p>
+                    <h3 id="statRataPengeluaran">Rp 0</h3>
+                </div>
+
+                <div class="statistik-card">
+                    <p>Pengeluaran Terbesar</p>
+                    <h3 id="statPengeluaranTerbesar">Rp 0</h3>
+                    <span id="statNamaPengeluaran">
+                        Belum ada data
+                    </span>
+                </div>
+
+                <div class="statistik-card">
+                    <p>Kategori Terbesar</p>
+                    <h3 id="statKategoriTerbesar">
+                        Belum ada data
+                    </h3>
+                </div>
+
+            </div>
+
+            <div class="statistik-perbandingan">
+
+                <h3>Pemasukan vs Pengeluaran</h3>
+
+                <div id="grafikStatistik">
+                    <p>Statistik akan ditampilkan di sini.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TARGET TABUNGAN
+        ========================== -->
+        <section id="menu-tabungan" class="halaman">
+
+            <!-- HEADER TARGET -->
+            <div class="target-halaman-header">
+
+                <div>
+                    <h2>Target Tabungan</h2>
+
+                    <p class="tabungan-deskripsi">
+                        Wujudkan tujuan keuanganmu sedikit demi sedikit.
+                    </p>
+                </div>
+
+                <button
+                    type="button"
+                    class="tombol-tambah-target"
+                    onclick="tampilkanFormTarget(true)"
+                    aria-label="Tambah target tabungan"
+                    title="Tambah target tabungan"
+                >
+                    +
+                </button>
+
+            </div>
+
+
+            <!-- TAMPILAN KETIKA BELUM ADA TARGET -->
+            <div id="targetKosong" class="target-kosong">
+
+                <div class="target-kosong-ikon">
+                    +
+                </div>
+
+                <h3>Belum Ada Target Tabungan</h3>
+
+                <p>
+                    Mulai rencanakan tabunganmu dan capai tujuan
+                    keuangan yang kamu inginkan.
+                </p>
+
+                <button
+                    type="button"
+                    class="tombol-mulai-target"
+                    onclick="tampilkanFormTarget(true)"
+                >
+                    + Buat Target Pertama
+                </button>
+
+            </div>
+
+
+            <!-- FORM MEMBUAT TARGET BARU -->
+            <section
+                id="formTargetBaru"
+                class="form form-target-baru"
+                hidden
+            >
+
+                <div class="form-target-header">
+
+                    <h3>Buat Target Baru</h3>
+
+                    <button
+                        type="button"
+                        class="tombol-tutup-target"
+                        onclick="tampilkanFormTarget(false)"
+                        aria-label="Tutup formulir"
+                        title="Tutup formulir"
+                    >
+                        &times;
+                    </button>
+
+                </div>
+
+                <label for="namaTarget">
+                    Nama target
+                </label>
+
+                <input
+                    type="text"
+                    id="namaTarget"
+                    placeholder="Contoh: Beli laptop"
+                    autocomplete="off"
+                >
+
+                <label for="nominalTarget">
+                    Nominal target
+                </label>
+
+                <input
+                    type="text"
+                    id="nominalTarget"
+                    inputmode="numeric"
+                    placeholder="Contoh: 5.000.000"
+                    autocomplete="off"
+                >
+
+                <label for="tabunganAwal">
+                    Tabungan awal (opsional)
+                </label>
+
+                <input
+                    type="text"
+                    id="tabunganAwal"
+                    inputmode="numeric"
+                    placeholder="Masukkan nominal awal"
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    onclick="buatTargetTabungan()"
+                >
+                    Buat Target
+                </button>
+
+            </section>
+
+
+            <!-- DAFTAR TARGET SAYA -->
+            <section class="daftar-target">
+
+                <h3>Target Saya</h3>
+
+                <div id="daftarTargetTabungan">
+                    <p>Belum ada target tabungan.</p>
+                </div>
+
+            </section>
+
+
+            <!-- FORM TAMBAH TABUNGAN MANUAL -->
+            <section
+                id="formTabunganManual"
+                class="form form-tabungan-manual"
+                hidden
+            >
+
+                <h3>Tambah Tabungan Manual</h3>
+
+                <label for="pilihTargetManual">
+                    Pilih target
+                </label>
+
+                <select id="pilihTargetManual">
+                    <option value="">
+                        Pilih target tabungan
+                    </option>
+                </select>
+
+                <label for="nominalManual">
+                    Nominal tabungan
+                </label>
+
+                <input
+                    type="text"
+                    id="nominalManual"
+                    inputmode="numeric"
+                    placeholder="Masukkan nominal"
+                    autocomplete="off"
+                >
+
+                <button
+                    type="button"
+                    onclick="tambahTabunganManual()"
+                >
+                    Tambahkan Tabungan
+                </button>
+
+            </section>
+
+        </section>
+
+
+        <!-- =========================
+             PEMASUKAN
+        ========================== -->
         <section id="menu-pemasukan" class="halaman">
 
             <h2>Catat Pemasukan</h2>
 
             <section class="form">
 
-                <label for="jumlah">Jumlah uang</label>
+                <label for="jumlah">
+                    Jumlah uang
+                </label>
+
                 <input
                     type="text"
                     id="jumlah"
@@ -83,15 +358,76 @@
                     autocomplete="off"
                 >
 
-                <label for="kategori">Kategori pemasukan</label>
-                <select id="kategori" onchange="cekKategori()">
+
+                <label for="kategori">
+                    Kategori pemasukan
+                </label>
+
+                <select
+                    id="kategori"
+                    onchange="cekKategori()"
+                >
                     <option value="gaji">Gaji</option>
                     <option value="uang-saku">Uang Saku</option>
                     <option value="tabungan">Tabungan</option>
                     <option value="lainnya">Lainnya</option>
                 </select>
 
-                <button onclick="tambahTransaksi('pemasukan')">
+
+                <!-- ALOKASI PEMASUKAN KE TARGET -->
+                <div class="alokasi-tabungan">
+
+                    <label for="targetAlokasi">
+                        Alokasikan ke target tabungan (opsional)
+                    </label>
+
+                    <select id="targetAlokasi">
+                        <option value="">
+                            Tidak dialokasikan
+                        </option>
+                    </select>
+
+                    <label for="jumlahAlokasi">
+                        Nominal yang ditabung
+                    </label>
+
+                    <input
+                        type="text"
+                        id="jumlahAlokasi"
+                        inputmode="numeric"
+                        placeholder="Masukkan nominal alokasi"
+                        autocomplete="off"
+                    >
+
+                    <p class="bantuan-alokasi">
+                        Nominal alokasi tidak boleh melebihi
+                        jumlah pemasukan.
+                    </p>
+
+                </div>
+
+
+                <!-- NAMA PEMASUKAN UNTUK KATEGORI LAINNYA -->
+                <div id="namaTransaksiContainer" hidden>
+
+                    <label for="namaTransaksi">
+                        Nama pemasukan
+                    </label>
+
+                    <input
+                        type="text"
+                        id="namaTransaksi"
+                        placeholder="Contoh: Hadiah lomba"
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <button
+                    type="button"
+                    onclick="tambahTransaksi('pemasukan')"
+                >
                     Simpan Pemasukan
                 </button>
 
@@ -99,21 +435,32 @@
 
         </section>
 
-        <!-- PENGELUARAN -->
+
+        <!-- =========================
+             PENGELUARAN
+        ========================== -->
         <section id="menu-pengeluaran" class="halaman">
 
             <h2>Catat Pengeluaran</h2>
 
             <section class="form">
 
-                <label for="namaPengeluaran">Nama pengeluaran</label>
+                <label for="namaPengeluaran">
+                    Nama pengeluaran
+                </label>
+
                 <input
                     type="text"
                     id="namaPengeluaran"
                     placeholder="Contoh: Membeli makan"
+                    autocomplete="off"
                 >
 
-                <label for="jumlahPengeluaran">Jumlah uang</label>
+
+                <label for="jumlahPengeluaran">
+                    Jumlah uang
+                </label>
+
                 <input
                     type="text"
                     id="jumlahPengeluaran"
@@ -123,7 +470,10 @@
                 >
 
 
-                <label for="kategoriPengeluaran">Kategori pengeluaran</label>
+                <label for="kategoriPengeluaran">
+                    Kategori pengeluaran
+                </label>
+
                 <select id="kategoriPengeluaran">
                     <option value="makanan">Makanan</option>
                     <option value="transportasi">Transportasi</option>
@@ -133,7 +483,11 @@
                     <option value="lainnya">Lainnya</option>
                 </select>
 
-                <button onclick="tambahTransaksi('pengeluaran')">
+
+                <button
+                    type="button"
+                    onclick="tambahTransaksi('pengeluaran')"
+                >
                     Simpan Pengeluaran
                 </button>
 
@@ -143,27 +497,64 @@
 
     </main>
 
-    <!-- NAVIGASI BAWAH -->
+
+    <!-- =========================
+         NAVIGASI BAWAH
+    ========================== -->
     <nav class="menu-navigasi">
 
-        <button class="menu-btn aktif" onclick="bukaMenu('beranda')">
+        <button
+            type="button"
+            class="menu-btn aktif"
+            onclick="bukaMenu('beranda')"
+        >
             Beranda
         </button>
 
-        <button class="menu-btn" onclick="bukaMenu('riwayat')">
+        <button
+            type="button"
+            class="menu-btn"
+            onclick="bukaMenu('riwayat')"
+        >
             Riwayat
         </button>
 
-        <button class="menu-btn" onclick="bukaMenu('pemasukan')">
+        <button
+            type="button"
+            class="menu-btn"
+            onclick="bukaMenu('statistik')"
+        >
+            Statistik
+        </button>
+
+        <button
+            type="button"
+            class="menu-btn"
+            onclick="bukaMenu('tabungan')"
+        >
+            Target Tabungan
+        </button>
+
+        <button
+            type="button"
+            class="menu-btn"
+            onclick="bukaMenu('pemasukan')"
+        >
             Pemasukan
         </button>
 
-        <button class="menu-btn" onclick="bukaMenu('pengeluaran')">
+        <button
+            type="button"
+            class="menu-btn"
+            onclick="bukaMenu('pengeluaran')"
+        >
             Pengeluaran
         </button>
 
     </nav>
 
+
+    <!-- JAVASCRIPT -->
     <script src="script.js"></script>
 
 </body>

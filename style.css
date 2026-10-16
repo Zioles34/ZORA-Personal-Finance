@@ -377,6 +377,46 @@ main {
 
 /* RIWAYAT */
 
+
+/* PENCARIAN DAN FILTER TRANSAKSI */
+
+.filter-transaksi {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(130px, 180px);
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-transaksi input,
+.filter-transaksi select {
+    width: 100%;
+    min-width: 0;
+    padding: 13px 14px;
+    border: 1px solid #293957;
+    border-radius: 11px;
+    outline: none;
+    background: #080F20;
+    color: var(--text);
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.filter-transaksi input::placeholder {
+    color: #5E6F8E;
+}
+
+.filter-transaksi input:focus,
+.filter-transaksi select:focus {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 3px #00E5FF15;
+}
+
+@media (max-width: 420px) {
+    .filter-transaksi {
+        grid-template-columns: 1fr;
+    }
+}
+
 #menu-riwayat .riwayat-header {
     display: flex;
     justify-content: space-between;
@@ -672,4 +712,653 @@ main {
         align-items: flex-start;
         flex-direction: column;
     }
+}
+
+
+/* =====================================
+   STATISTIK KEUANGAN
+   ===================================== */
+
+   #menu-statistik {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 26px 24px 35px;
+}
+
+#menu-statistik > h2 {
+    margin: 0 0 24px;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--text, #edf4ff);
+}
+
+.statistik-filter {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-bottom: 22px;
+}
+
+.statistik-filter label {
+    color: var(--muted, #8b9cba);
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.statistik-filter select {
+    width: 100%;
+    max-width: 300px;
+    padding: 12px 14px;
+    border: 1px solid #293957;
+    border-radius: 10px;
+    background: #0d172b;
+    color: #edf4ff;
+    font: inherit;
+    outline: none;
+}
+
+.statistik-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+    margin-bottom: 22px;
+}
+
+.statistik-card {
+    min-width: 0;
+    padding: 20px;
+    border: 1px solid #243451;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #101c33, #0a1020);
+    box-shadow: 0 8px 24px #00000018;
+}
+
+.statistik-card p {
+    margin: 0 0 12px;
+    color: #91a3c1;
+    font-size: 13px;
+}
+
+.statistik-card h3 {
+    margin: 0;
+    color: #00e5ff;
+    font-size: clamp(18px, 2.3vw, 25px);
+    font-weight: 800;
+    overflow-wrap: anywhere;
+}
+
+#statNamaPengeluaran {
+    display: block;
+    margin-top: 9px;
+    color: #c1cde0;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+#menu-statistik .statistik-card:nth-child(2) h3 {
+    color: #a78bfa;
+}
+
+#menu-statistik .statistik-card:nth-child(3) h3 {
+    color: #ff6b9d;
+}
+
+#menu-statistik .statistik-card:nth-child(4) h3 {
+    color: #38d9a9;
+}
+
+.statistik-perbandingan {
+    padding: 22px;
+    border: 1px solid #243451;
+    border-radius: 16px;
+    background: #0c1528;
+}
+
+.statistik-perbandingan > h3 {
+    margin: 0 0 24px;
+    color: #edf4ff;
+    font-size: 18px;
+}
+
+.statistik-baris {
+    margin-bottom: 22px;
+}
+
+.statistik-baris:last-child {
+    margin-bottom: 0;
+}
+
+.statistik-bar-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+    color: #b8c7df;
+    font-size: 13px;
+}
+
+.statistik-bar-label strong {
+    color: #edf4ff;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+.statistik-bar-lintasan {
+    width: 100%;
+    height: 12px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: #1b2941;
+}
+
+.statistik-bar-pemasukan,
+.statistik-bar-pengeluaran {
+    height: 100%;
+    min-width: 0;
+    border-radius: inherit;
+    transition: width 0.35s ease;
+}
+
+.statistik-bar-pemasukan {
+    background: linear-gradient(90deg, #00b8d4, #00e5ff);
+}
+
+.statistik-bar-pengeluaran {
+    background: linear-gradient(90deg, #7547e8, #b18cff);
+}
+
+/* =====================================
+   PERBAIKAN WARNA NAVIGASI
+   ===================================== */
+
+
+/* =====================================
+   WARNA TOMBOL NAVIGASI ZORA
+   ===================================== */
+
+.menu-navigasi .menu-btn {
+    border: 1px solid #243451;
+    background: #0d172b;
+    color: #8b9cba;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+/* BERANDA — biru */
+.menu-navigasi .menu-btn[onclick="bukaMenu('beranda')"].aktif {
+    background: #10264b;
+    border-color: #2878d0;
+    color: #63b3ff;
+    box-shadow: 0 0 12px #2878d020;
+}
+
+/* RIWAYAT — oranye */
+.menu-navigasi .menu-btn[onclick="bukaMenu('riwayat')"].aktif {
+    background: #352510;
+    border-color: #c78324;
+    color: #ffc46b;
+    box-shadow: 0 0 12px #c7832420;
+}
+
+/* STATISTIK — kuning keemasan */
+.menu-navigasi .menu-btn[onclick="bukaMenu('statistik')"].aktif {
+    background: #332b0b;
+    border-color: #c9a227;
+    color: #ffdf70;
+    box-shadow: 0 0 12px #c9a22720;
+}
+
+/* PEMASUKAN — hijau */
+.menu-navigasi .menu-btn[onclick="bukaMenu('pemasukan')"].aktif {
+    background: #0b3025;
+    border-color: #20b875;
+    color: #4ce0a0;
+    box-shadow: 0 0 12px #20b87520;
+}
+
+/* PENGELUARAN — merah */
+.menu-navigasi .menu-btn[onclick="bukaMenu('pengeluaran')"].aktif {
+    background: #35151c;
+    border-color: #e0445e;
+    color: #ff7185;
+    box-shadow: 0 0 12px #e0445e20;
+}
+
+/* Hover untuk tombol yang tidak aktif */
+.menu-navigasi .menu-btn:not(.aktif):hover {
+    background: #17243b;
+    border-color: #435b7d;
+    color: #edf4ff;
+}
+
+
+@media (max-width: 600px) {
+    #menu-statistik {
+        padding: 22px 15px 30px;
+    }
+
+    .statistik-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .statistik-card {
+        padding: 17px;
+    }
+
+    .statistik-perbandingan {
+        padding: 17px;
+    }
+}
+
+
+/* =====================================
+   WARNA TOMBOL ZORA — AKTIF & TIDAK AKTIF
+   ===================================== */
+
+/* RIWAYAT — ORANYE */
+.menu-navigasi .menu-btn[onclick="bukaMenu('riwayat')"] {
+    --warna-menu: #ffc46b;
+    --latar-menu: #352510;
+    --border-menu: #c78324;
+}
+
+/* STATISTIK — KUNING */
+.menu-navigasi .menu-btn[onclick="bukaMenu('statistik')"] {
+    --warna-menu: #ffdf70;
+    --latar-menu: #332b0b;
+    --border-menu: #c9a227;
+}
+
+/* PEMASUKAN — HIJAU */
+.menu-navigasi .menu-btn[onclick="bukaMenu('pemasukan')"] {
+    --warna-menu: #4ce0a0;
+    --latar-menu: #0b3025;
+    --border-menu: #20b875;
+}
+
+/* PENGELUARAN — MERAH */
+.menu-navigasi .menu-btn[onclick="bukaMenu('pengeluaran')"] {
+    --warna-menu: #ff7185;
+    --latar-menu: #35151c;
+    --border-menu: #e0445e;
+}
+
+/* Warna saat tombol tidak aktif */
+.menu-navigasi .menu-btn:not(.aktif)[onclick] {
+    color: var(--warna-menu);
+    background: color-mix(in srgb, var(--latar-menu) 45%, #0d172b);
+    border-color: color-mix(in srgb, var(--border-menu) 45%, #243451);
+}
+
+/* Warna saat tombol aktif */
+.menu-navigasi .menu-btn.aktif[onclick] {
+    color: var(--warna-menu);
+    background: var(--latar-menu);
+    border-color: var(--border-menu);
+    box-shadow: 0 0 12px color-mix(in srgb, var(--border-menu) 15%, transparent);
+}
+
+
+/* BERANDA — BIRU, AKTIF MAUPUN TIDAK AKTIF */
+.menu-navigasi .menu-btn[onclick="bukaMenu('beranda')"] {
+    color: #63b3ff;
+    background: #10264b;
+    border: 1px solid #2878d0;
+}
+
+/* Beranda saat dipilih */
+.menu-navigasi .menu-btn[onclick="bukaMenu('beranda')"].aktif {
+    color: #63b3ff;
+    background: #10264b;
+    border-color: #2878d0;
+    box-shadow: 0 0 12px #2878d020;
+}
+
+
+/* TARGET TABUNGAN — UNGU MAGENTA */
+.menu-navigasi .menu-btn[onclick="bukaMenu('tabungan')"] {
+    --warna-menu: #e0a0ff;
+    --latar-menu: #301443;
+    --border-menu: #a855d9;
+
+    color: var(--warna-menu);
+    background: color-mix(
+        in srgb,
+        var(--latar-menu) 45%,
+        #0d172b
+    );
+    border-color: color-mix(
+        in srgb,
+        var(--border-menu) 45%,
+        #243451
+    );
+}
+
+.menu-navigasi .menu-btn[onclick="bukaMenu('tabungan')"].aktif {
+    color: var(--warna-menu);
+    background: var(--latar-menu);
+    border-color: var(--border-menu);
+    box-shadow: 0 0 12px #a855d930;
+}
+
+
+/* AKSEN UNGU UNTUK TARGET TABUNGAN */
+#menu-tabungan .form button {
+    background: linear-gradient(90deg, #7026a5, #a855d9);
+    border-color: #a855d9;
+}
+
+#menu-tabungan .form input:focus,
+#menu-tabungan .form select:focus {
+    border-color: #a855d9;
+    box-shadow: 0 0 0 3px #a855d920;
+}
+
+.target-persentase {
+    color: #e0a0ff;
+}
+
+.target-progress-isi {
+    background: linear-gradient(90deg, #7026a5, #e0a0ff);
+}
+
+
+/* =====================================
+   DESAIN KARTU TARGET TABUNGAN ZORA
+   ===================================== */
+
+   #menu-tabungan .daftar-target {
+    margin-top: 30px;
+}
+
+#menu-tabungan .daftar-target > h3 {
+    margin-bottom: 18px;
+    font-size: 21px;
+    font-weight: 800;
+    color: #f2e8ff;
+}
+
+#daftarTargetTabungan {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+/* Kartu target */
+#daftarTargetTabungan .kartu-target {
+    position: relative;
+    min-width: 0;
+    padding: 23px;
+    overflow: hidden;
+    border: 1px solid #63358b;
+    border-radius: 18px;
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            #8d39bc22 0,
+            transparent 38%
+        ),
+        linear-gradient(145deg, #17112b, #0a1020 75%);
+    box-shadow: 0 10px 30px #00000020;
+    transition:
+        transform 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+#daftarTargetTabungan .kartu-target:hover {
+    transform: translateY(-3px);
+    border-color: #b76be8;
+    box-shadow: 0 12px 32px #a855d91a;
+}
+
+/* Dekorasi lingkaran */
+#daftarTargetTabungan .kartu-target::before {
+    content: "";
+    position: absolute;
+    top: -45px;
+    right: -40px;
+    width: 115px;
+    height: 115px;
+    border: 1px solid #b76be825;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Nama target dan persentase */
+#daftarTargetTabungan .target-header {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+#daftarTargetTabungan .target-nama {
+    margin: 0;
+    color: #f4eaff;
+    font-size: 18px;
+    font-weight: 750;
+    line-height: 1.4;
+    overflow-wrap: anywhere;
+}
+
+#daftarTargetTabungan .target-persentase {
+    flex-shrink: 0;
+    padding: 7px 10px;
+    border: 1px solid #a855d955;
+    border-radius: 9px;
+    background: #7026a522;
+    color: #e0a0ff;
+    font-size: 13px;
+    font-weight: 800;
+}
+
+/* Nominal terkumpul */
+#daftarTargetTabungan .target-nominal {
+    margin: 0 0 8px;
+    color: #e0a0ff;
+    font-size: 21px;
+    font-weight: 800;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+}
+
+/* Keterangan sisa target */
+#daftarTargetTabungan .target-sisa {
+    margin: 0 0 17px;
+    color: #a9a1bd;
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+/* Progress bar */
+#daftarTargetTabungan .target-progress {
+    width: 100%;
+    height: 11px;
+    overflow: hidden;
+    border: 1px solid #39254e;
+    border-radius: 20px;
+    background: #20192f;
+}
+
+#daftarTargetTabungan .target-progress-isi {
+    height: 100%;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #7026a5, #c76bff, #e0a0ff);
+    box-shadow: 0 0 12px #b76be855;
+    transition: width 0.4s ease;
+}
+
+/* Status target tercapai */
+#daftarTargetTabungan .target-selesai {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 15px;
+    padding: 8px 11px;
+    border: 1px solid #20b87555;
+    border-radius: 9px;
+    background: #0b3025;
+    color: #4ce0a0;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+}
+
+/* Tombol hapus */
+#daftarTargetTabungan .target-hapus {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    padding: 10px 14px;
+    border: 1px solid #71304c;
+    border-radius: 10px;
+    background: #35151c66;
+    color: #ff8ba0;
+    font-size: 12px;
+    font-weight: 700;
+    transition: background 0.2s ease;
+}
+
+#daftarTargetTabungan .target-hapus:hover {
+    background: #501b29;
+}
+
+/* Tampilan ketika belum ada target */
+#daftarTargetTabungan > p {
+    grid-column: 1 / -1;
+    margin: 0;
+    padding: 35px 20px;
+    border: 1px dashed #63358b;
+    border-radius: 16px;
+    background: #17112b55;
+    color: #b9a5ce;
+    text-align: center;
+    line-height: 1.7;
+}
+
+/* Responsif untuk layar kecil */
+@media (max-width: 600px) {
+    #daftarTargetTabungan {
+        grid-template-columns: 1fr;
+    }
+
+    #daftarTargetTabungan .kartu-target {
+        padding: 19px;
+    }
+
+    #daftarTargetTabungan .target-nominal {
+        font-size: 19px;
+    }
+}
+
+
+/* HEADER HALAMAN TARGET TABUNGAN */
+.target-halaman-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+/* TOMBOL PLUS DI HEADER */
+.tombol-tambah-target {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #2274A5;
+    border-radius: 50%;
+    background: #2274A5;
+    color: #FFFFFF;
+    font-size: 30px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.tombol-tambah-target:hover {
+    transform: scale(1.06);
+}
+
+/* TAMPILAN KOSONG */
+.target-kosong {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    min-height: 260px;
+    padding: 30px 22px;
+    margin-bottom: 28px;
+    border: 1px dashed #2274A5;
+    border-radius: 18px;
+    background: rgba(34, 116, 165, 0.08);
+    text-align: center;
+}
+
+.target-kosong[hidden],
+.form-target-baru[hidden],
+.form-tabungan-manual[hidden] {
+    display: none !important;
+}
+
+.target-kosong-ikon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 76px;
+    height: 76px;
+    border: 2px solid #2274A5;
+    border-radius: 50%;
+    color: #A6D9F7;
+    font-size: 48px;
+}
+
+.target-kosong h3 {
+    margin: 0;
+}
+
+.target-kosong p {
+    max-width: 340px;
+    margin: 0;
+    color: #A6D9F7;
+    line-height: 1.6;
+}
+
+.tombol-mulai-target {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background: #2274A5;
+    color: #FFFFFF;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* FORM TARGET */
+.form-target-baru {
+    margin-bottom: 28px;
+}
+
+.form-target-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.tombol-tutup-target {
+    border: none;
+    background: transparent;
+    color: #A6D9F7;
+    font-size: 28px;
+    cursor: pointer;
 }
