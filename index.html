@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,6 @@
     <title>ZORA - Personal Finance</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
@@ -17,79 +17,49 @@
         <p>Personal Finance</p>
     </header>
 
-    <div class="logout-container">
-        <button class="logout-btn" onclick="logout()">Logout</button>
-    </div>
-
     <main>
 
-        <section class="saldo">
-            <p>Total Saldo</p>
-            <h2 id="saldo">Rp 0</h2>
-        </section>
+        <!-- BERANDA -->
+        <section id="menu-beranda" class="halaman aktif">
 
-        <section class="ringkasan">
+            <section class="saldo">
+                <p>Total Saldo</p>
+                <h2 id="saldo">Rp 0</h2>
+            </section>
 
-            <div class="card">
-                <p>Pemasukan</p>
-                <h3 id="pemasukan">Rp 0</h3>
-            </div>
+            <section class="ringkasan">
 
-            <div class="card">
-                <p>Pengeluaran</p>
-                <h3 id="pengeluaran">Rp 0</h3>
-            </div>
+                <div class="card">
+                    <p>Pemasukan</p>
+                    <h3 id="pemasukan">Rp 0</h3>
+                </div>
 
-        </section>
+                <div class="card">
+                    <p>Pengeluaran</p>
+                    <h3 id="pengeluaran">Rp 0</h3>
+                </div>
 
-        <section class="form">
+            </section>
 
-            <h2>Tambah Transaksi</h2>
-
-            <div id="namaTransaksiContainer">
-
-                <input 
-                    type="text" 
-                    id="namaTransaksi" 
-                    placeholder="Nama transaksi"
-                >
-
-            </div>
-
-            <input
-                type="number"
-                id="jumlah"
-                placeholder="Jumlah uang"
-            >
-
-            <select id="jenis">
-                <option value="pemasukan">Pemasukan</option>
-                <option value="pengeluaran">Pengeluaran</option>
-            </select>
-
-            <select id="kategori" onchange="cekKategori()">
-
-                <option value="gaji">Gaji</option>
-                <option value="uang-saku">Uang Saku</option>
-                <option value="makanan">Makanan</option>
-                <option value="transportasi">Transportasi</option>
-                <option value="belanja">Belanja</option>
-                <option value="hiburan">Hiburan</option>
-                <option value="pendidikan">Pendidikan</option>
-                <option value="tabungan">Tabungan</option>
-                <option value="lainnya">Lainnya</option>
-            
-            </select>
-
-            <button onclick="tambahTransaksi()">
-                Tambahkan
-            </button>
+            <section class="grafik">
+                <h2>Grafik Keuangan</h2>
+                <div id="grafikKeuangan">
+                    <p>Grafik akan ditampilkan di sini.</p>
+                </div>
+            </section>
 
         </section>
 
-        <section class="riwayat">
+        <!-- RIWAYAT -->
+        <section id="menu-riwayat" class="halaman">
 
-            <h2>Riwayat Transaksi</h2>
+            <div class="riwayat-header">
+                <h2>Riwayat Transaksi</h2>
+
+                <select id="filterBulan" onchange="filterTransaksi()">
+                    <option value="semua">Semua</option>
+                </select>
+            </div>
 
             <div id="daftarTransaksi">
                 <p>Belum ada transaksi.</p>
@@ -97,9 +67,104 @@
 
         </section>
 
+        <!-- PEMASUKAN -->
+        <section id="menu-pemasukan" class="halaman">
+
+            <h2>Catat Pemasukan</h2>
+
+            <section class="form">
+
+                <label for="jumlah">Jumlah uang</label>
+                <input
+                    type="text"
+                    id="jumlah"
+                    inputmode="numeric"
+                    placeholder="Masukkan jumlah uang"
+                    autocomplete="off"
+                >
+
+                <label for="kategori">Kategori pemasukan</label>
+                <select id="kategori" onchange="cekKategori()">
+                    <option value="gaji">Gaji</option>
+                    <option value="uang-saku">Uang Saku</option>
+                    <option value="tabungan">Tabungan</option>
+                    <option value="lainnya">Lainnya</option>
+                </select>
+
+                <button onclick="tambahTransaksi('pemasukan')">
+                    Simpan Pemasukan
+                </button>
+
+            </section>
+
+        </section>
+
+        <!-- PENGELUARAN -->
+        <section id="menu-pengeluaran" class="halaman">
+
+            <h2>Catat Pengeluaran</h2>
+
+            <section class="form">
+
+                <label for="namaPengeluaran">Nama pengeluaran</label>
+                <input
+                    type="text"
+                    id="namaPengeluaran"
+                    placeholder="Contoh: Membeli makan"
+                >
+
+                <label for="jumlahPengeluaran">Jumlah uang</label>
+                <input
+                    type="text"
+                    id="jumlahPengeluaran"
+                    inputmode="numeric"
+                    placeholder="Masukkan jumlah uang"
+                    autocomplete="off"
+                >
+
+
+                <label for="kategoriPengeluaran">Kategori pengeluaran</label>
+                <select id="kategoriPengeluaran">
+                    <option value="makanan">Makanan</option>
+                    <option value="transportasi">Transportasi</option>
+                    <option value="belanja">Belanja</option>
+                    <option value="hiburan">Hiburan</option>
+                    <option value="pendidikan">Pendidikan</option>
+                    <option value="lainnya">Lainnya</option>
+                </select>
+
+                <button onclick="tambahTransaksi('pengeluaran')">
+                    Simpan Pengeluaran
+                </button>
+
+            </section>
+
+        </section>
+
     </main>
 
+    <!-- NAVIGASI BAWAH -->
+    <nav class="menu-navigasi">
+
+        <button class="menu-btn aktif" onclick="bukaMenu('beranda')">
+            Beranda
+        </button>
+
+        <button class="menu-btn" onclick="bukaMenu('riwayat')">
+            Riwayat
+        </button>
+
+        <button class="menu-btn" onclick="bukaMenu('pemasukan')">
+            Pemasukan
+        </button>
+
+        <button class="menu-btn" onclick="bukaMenu('pengeluaran')">
+            Pengeluaran
+        </button>
+
+    </nav>
+
     <script src="script.js"></script>
-    
+
 </body>
 </html>
